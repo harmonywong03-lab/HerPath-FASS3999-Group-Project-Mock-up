@@ -1,0 +1,677 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+.hp{font-family:'DM Sans',sans-serif;background:#F7F4EF;color:#3a3330;min-height:600px;}
+.hp-nav{background:#fff;border-bottom:0.5px solid #ddd8d0;padding:0 1.2rem;display:flex;align-items:center;justify-content:space-between;height:54px;flex-wrap:wrap;gap:6px;}
+.hp-logo{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;color:#7a6e64;letter-spacing:0.04em;cursor:pointer;}
+.hp-logo span{color:#b5957a;}
+.hp-nav-links{display:flex;gap:1.2rem;list-style:none;flex-wrap:wrap;}
+.hp-nav-links li a{font-size:12px;color:#7a6e64;text-decoration:none;letter-spacing:0.03em;cursor:pointer;transition:color 0.2s;background:none;border:none;font-family:'DM Sans',sans-serif;padding:0;}
+.hp-nav-links li a:hover,.hp-nav-links li a.active{color:#b5957a;}
+.hp-nav-right{display:flex;align-items:center;gap:8px;}
+.lang-select{font-size:11px;border:0.5px solid #ddd8d0;border-radius:14px;padding:4px 8px;background:#f7f4ef;color:#7a6e64;font-family:'DM Sans',sans-serif;cursor:pointer;outline:none;}
+.btn-nav{background:#b5957a;color:#fff;border:none;padding:6px 14px;border-radius:16px;font-size:12px;font-family:'DM Sans',sans-serif;cursor:pointer;transition:background 0.2s;}
+.btn-nav:hover{background:#a07f65;}
+.btn-nav.outline{background:transparent;color:#b5957a;border:1px solid #b5957a;}
+.btn-nav.outline:hover{background:#f7f0eb;}
+.page{display:none;}.page.active{display:block;}
+.safe-banner{background:#e8f2ec;border-bottom:0.5px solid #c8ddd0;padding:8px 1.5rem;display:flex;align-items:center;gap:8px;font-size:12px;color:#4a7a5e;}
+.safe-banner i{font-size:14px;color:#5a9a72;}
+.hp-hero{background:#ede7df;padding:3rem 1.5rem 2.5rem;text-align:center;position:relative;}
+.hp-hero h1{font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:400;color:#5c4f45;line-height:1.2;margin-bottom:0.8rem;}
+.hp-hero h1 em{color:#8cae95;font-style:italic;}
+.hp-hero p{font-size:14px;color:#7a6e64;max-width:460px;margin:0 auto 1.5rem;line-height:1.7;font-weight:300;}
+.hero-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.btn-primary{background:#b5957a;color:#fff;border:none;padding:10px 22px;border-radius:20px;font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer;transition:background 0.2s;}
+.btn-primary:hover{background:#a07f65;}
+.btn-outline{background:transparent;color:#7a6e64;border:1px solid #c5b8ae;padding:10px 22px;border-radius:20px;font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all 0.2s;}
+.btn-outline:hover{border-color:#b5957a;color:#b5957a;}
+.illustr-row{display:flex;gap:10px;justify-content:center;margin:1.5rem 0;flex-wrap:wrap;}
+.illustr-card{background:#fff;border-radius:16px;padding:1rem;width:140px;text-align:center;border:0.5px solid #ddd8d0;}
+.illustr-svg{width:80px;height:80px;margin:0 auto 8px;}
+.illustr-card p{font-size:11px;color:#9a8f86;line-height:1.4;}
+.quote-strip{background:#f0ece6;padding:1rem 1.5rem;text-align:center;border-top:0.5px solid #ddd8d0;border-bottom:0.5px solid #ddd8d0;}
+.quote-strip blockquote{font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:#7a6e64;max-width:500px;margin:0 auto;}
+.quote-strip cite{display:block;font-size:11px;font-style:normal;color:#b0a899;margin-top:4px;}
+.features-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:1.5rem;}
+.feat-card{background:#fff;border-radius:14px;padding:1.2rem;border:0.5px solid #ddd8d0;cursor:pointer;transition:transform 0.2s;}
+.feat-card:hover{transform:translateY(-2px);}
+.feat-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:10px;}
+.fi-sage{background:#e4ede8;color:#5a8c6e;}
+.fi-rose{background:#f0e4e4;color:#a06060;}
+.fi-sand{background:#ede8e0;color:#8c7a65;}
+.fi-lav{background:#ede4f0;color:#7a5a9a;}
+.feat-card h3{font-size:13px;font-weight:500;color:#5c4f45;margin-bottom:4px;}
+.feat-card p{font-size:11.5px;color:#9a8f86;line-height:1.5;}
+.hotline-section{padding:1rem 1.5rem;background:#fff5f0;border-top:0.5px solid #f0d8d0;border-bottom:0.5px solid #f0d8d0;}
+.hotline-title{font-size:12px;font-weight:500;color:#a06060;margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+.hotline-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;}
+.hotline-item{background:#fff;border-radius:10px;padding:8px 12px;border:0.5px solid #f0d8d0;display:flex;flex-direction:column;gap:2px;}
+.hotline-item .hl-name{font-size:11px;font-weight:500;color:#5c4f45;}
+.hotline-item .hl-num{font-size:13px;color:#b5957a;font-weight:500;}
+.hotline-item .hl-desc{font-size:10px;color:#b0a899;}
+.pg-header{background:#fff;padding:1.5rem;border-bottom:0.5px solid #ddd8d0;}
+.pg-header h2{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:500;color:#5c4f45;}
+.pg-header p{font-size:12px;color:#9a8f86;margin-top:3px;}
+.lesson-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:1.2rem;}
+.les-card{background:#fff;border-radius:12px;border:0.5px solid #ddd8d0;overflow:hidden;cursor:pointer;transition:transform 0.2s;}
+.les-card:hover{transform:translateY(-2px);}
+.les-thumb{height:70px;display:flex;align-items:center;justify-content:center;font-size:26px;}
+.les-body{padding:10px 12px;}
+.les-tag{display:inline-block;font-size:9px;padding:2px 7px;border-radius:8px;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:5px;}
+.tag-lesson{background:#e4ede8;color:#4a7a5e;}
+.tag-podcast{background:#e8e0f0;color:#7a5a9a;}
+.tag-guide{background:#ede8e0;color:#7a6550;}
+.les-body h4{font-size:12px;font-weight:500;color:#5c4f45;margin-bottom:3px;}
+.les-body p{font-size:11px;color:#9a8f86;line-height:1.5;}
+.les-footer{padding:8px 12px;border-top:0.5px solid #f0ece6;display:flex;align-items:center;justify-content:space-between;}
+.prog-bar{flex:1;height:3px;background:#f0ece6;border-radius:2px;margin-right:8px;}
+.prog-fill{height:100%;border-radius:2px;background:#8cae95;}
+.les-footer span{font-size:10px;color:#b0a899;}
+.dl-btn{font-size:10px;color:#b5957a;background:#f7f0eb;border:none;border-radius:8px;padding:3px 8px;cursor:pointer;font-family:'DM Sans',sans-serif;}
+.lesson-detail{padding:1.2rem 1.5rem;}
+.back-btn{font-size:12px;color:#b5957a;background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;display:flex;align-items:center;gap:4px;margin-bottom:1rem;padding:0;}
+.ld-hero{background:#fff;border-radius:14px;border:0.5px solid #ddd8d0;padding:1.5rem;margin-bottom:1rem;}
+.ld-hero h3{font-family:'Cormorant Garamond',serif;font-size:22px;color:#5c4f45;margin-bottom:6px;}
+.ld-hero p{font-size:12.5px;color:#7a6e64;line-height:1.7;margin-bottom:1rem;}
+.ld-actions{display:flex;gap:8px;flex-wrap:wrap;}
+.ld-module{background:#fff;border-radius:12px;border:0.5px solid #ddd8d0;padding:1rem 1.2rem;margin-bottom:8px;}
+.ld-module h5{font-size:12px;font-weight:500;color:#5c4f45;margin-bottom:4px;display:flex;align-items:center;gap:6px;}
+.ld-module p{font-size:11.5px;color:#7a6e64;line-height:1.6;}
+.resource-section{padding:1.2rem 1.5rem;}
+.res-category{margin-bottom:1.2rem;}
+.res-cat-title{font-size:13px;font-weight:500;color:#5c4f45;margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+.res-card{background:#fff;border-radius:10px;border:0.5px solid #ddd8d0;padding:10px 14px;margin-bottom:6px;display:flex;align-items:flex-start;gap:10px;}
+.res-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+.res-info h6{font-size:12px;font-weight:500;color:#5c4f45;margin-bottom:2px;}
+.res-info p{font-size:11px;color:#9a8f86;line-height:1.4;}
+.res-info a{font-size:10px;color:#b5957a;text-decoration:none;}
+.chat-wrap{margin:1.2rem;background:#fff;border-radius:14px;border:0.5px solid #ddd8d0;overflow:hidden;}
+.chat-hd{padding:12px 14px;background:#f7f4ef;border-bottom:0.5px solid #ddd8d0;display:flex;align-items:center;gap:8px;}
+.chat-av{width:32px;height:32px;border-radius:50%;background:#e4ede8;display:flex;align-items:center;justify-content:center;font-size:14px;}
+.chat-hd-info h4{font-size:12px;font-weight:500;color:#5c4f45;}
+.chat-hd-info p{font-size:10px;color:#8cae95;}
+.chat-dot{width:6px;height:6px;border-radius:50%;background:#8cae95;display:inline-block;margin-right:3px;}
+.chat-msgs{padding:12px 14px;display:flex;flex-direction:column;gap:10px;min-height:180px;}
+.msg{max-width:78%;padding:9px 12px;border-radius:12px;font-size:12px;line-height:1.6;}
+.msg-s{background:#f0ece6;color:#5c4f45;align-self:flex-start;border-bottom-left-radius:3px;}
+.msg-u{background:#b5957a;color:#fff;align-self:flex-end;border-bottom-right-radius:3px;}
+.msg-t{font-size:9px;margin-top:3px;opacity:0.6;}
+.chat-in{padding:10px 14px;border-top:0.5px solid #ddd8d0;display:flex;gap:8px;align-items:center;}
+.chat-input{flex:1;border:0.5px solid #ddd8d0;border-radius:16px;padding:8px 14px;font-size:12px;font-family:'DM Sans',sans-serif;color:#5c4f45;background:#f7f4ef;outline:none;}
+.chat-input:focus{border-color:#b5957a;}
+.chat-send{width:32px;height:32px;border-radius:50%;background:#b5957a;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;flex-shrink:0;}
+.chat-send:hover{background:#a07f65;}
+.comm-tabs{display:flex;padding:1.2rem 1.5rem 0;border-bottom:0.5px solid #ddd8d0;}
+.ctab{padding:8px 16px;font-size:12px;color:#9a8f86;cursor:pointer;border-bottom:2px solid transparent;background:none;border-top:none;border-left:none;border-right:none;font-family:'DM Sans',sans-serif;transition:all 0.2s;}
+.ctab.active{color:#b5957a;border-bottom-color:#b5957a;}
+.comm-body{padding:1.2rem 1.5rem;}
+.tab-pn{display:none;}.tab-pn.active{display:block;}
+.post{background:#fff;border-radius:12px;border:0.5px solid #ddd8d0;padding:1rem 1.2rem;margin-bottom:10px;}
+.post-hd{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+.pav{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;}
+.av-teal{background:#e4ede8;color:#4a7a5e;}
+.av-rose{background:#f0e4e4;color:#a06060;}
+.av-sand{background:#ede8e0;color:#7a6550;}
+.av-lav{background:#ede4f0;color:#7a5a9a;}
+.pm h5{font-size:12px;font-weight:500;color:#5c4f45;}
+.pm span{font-size:10px;color:#b0a899;}
+.anon-b{margin-left:auto;font-size:9px;background:#f0ece6;color:#9a8f86;padding:2px 7px;border-radius:8px;}
+.mod-b{margin-left:auto;font-size:9px;background:#e4ede8;color:#4a7a5e;padding:2px 7px;border-radius:8px;}
+.post p{font-size:12px;color:#6a5f56;line-height:1.7;}
+.post-ft{margin-top:10px;display:flex;gap:12px;}
+.pa{font-size:11px;color:#b0a899;cursor:pointer;display:flex;align-items:center;gap:3px;background:none;border:none;font-family:'DM Sans',sans-serif;padding:0;transition:color 0.2s;}
+.pa:hover{color:#b5957a;}
+.events-g{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+.ev-card{background:#fff;border-radius:12px;border:0.5px solid #ddd8d0;padding:1rem;display:flex;gap:10px;}
+.ev-date{text-align:center;background:#f7f4ef;border-radius:8px;padding:6px 10px;flex-shrink:0;}
+.ev-date .day{font-size:20px;font-weight:500;color:#b5957a;line-height:1;}
+.ev-date .mon{font-size:9px;color:#9a8f86;text-transform:uppercase;letter-spacing:0.05em;}
+.ev-info h4{font-size:12px;font-weight:500;color:#5c4f45;margin-bottom:3px;}
+.ev-info p{font-size:11px;color:#9a8f86;line-height:1.5;margin-bottom:6px;}
+.ev-tags{display:flex;gap:4px;flex-wrap:wrap;}
+.ev-tag{font-size:9px;padding:2px 7px;border-radius:8px;background:#e4ede8;color:#4a7a5e;}
+.ev-tag.off{background:#ede8e0;color:#7a6550;}
+.mod-note{font-size:10px;color:#5a8c6e;display:flex;align-items:center;gap:4px;margin-top:4px;}
+.sign-wrap{max-width:360px;margin:0 auto;padding:1.5rem;}
+.sign-box{background:#fff;border-radius:16px;border:0.5px solid #ddd8d0;padding:1.5rem;}
+.sign-box h3{font-family:'Cormorant Garamond',serif;font-size:22px;color:#5c4f45;margin-bottom:4px;}
+.sign-box p{font-size:12px;color:#9a8f86;margin-bottom:1.2rem;line-height:1.6;}
+.form-group{margin-bottom:12px;}
+.form-group label{display:block;font-size:11px;color:#7a6e64;margin-bottom:4px;font-weight:500;}
+.form-group input[type=text],.form-group input[type=email],.form-group input[type=password]{width:100%;border:0.5px solid #ddd8d0;border-radius:10px;padding:9px 12px;font-size:12px;font-family:'DM Sans',sans-serif;color:#5c4f45;background:#f7f4ef;outline:none;}
+.form-group input:focus{border-color:#b5957a;}
+.check-row{display:flex;align-items:flex-start;gap:8px;margin-bottom:10px;font-size:11px;color:#7a6e64;line-height:1.5;}
+.check-row input[type=checkbox]{margin-top:2px;accent-color:#b5957a;flex-shrink:0;}
+.sign-submit{width:100%;background:#b5957a;color:#fff;border:none;padding:11px;border-radius:12px;font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer;margin-top:4px;transition:background 0.2s;}
+.sign-submit:hover{background:#a07f65;}
+.sign-switch{text-align:center;font-size:11px;color:#9a8f86;margin-top:10px;}
+.sign-switch a{color:#b5957a;cursor:pointer;text-decoration:none;}
+.profile-wrap{padding:1.2rem 1.5rem;}
+.prof-header{background:#fff;border-radius:14px;border:0.5px solid #ddd8d0;padding:1.2rem;margin-bottom:12px;display:flex;align-items:center;gap:14px;}
+.prof-av{width:60px;height:60px;border-radius:50%;background:#e4ede8;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:500;color:#4a7a5e;flex-shrink:0;}
+.prof-info h3{font-size:16px;font-weight:500;color:#5c4f45;}
+.prof-info p{font-size:12px;color:#9a8f86;}
+.prof-badge{display:inline-block;font-size:10px;background:#e4ede8;color:#4a7a5e;padding:2px 8px;border-radius:8px;margin-top:4px;}
+.prof-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:12px;}
+.prof-stat{background:#fff;border-radius:10px;border:0.5px solid #ddd8d0;padding:10px 14px;}
+.prof-stat .ps-num{font-size:22px;font-weight:500;color:#b5957a;}
+.prof-stat .ps-label{font-size:11px;color:#9a8f86;margin-top:2px;}
+.prof-prefs{background:#fff;border-radius:12px;border:0.5px solid #ddd8d0;padding:1rem 1.2rem;}
+.prof-prefs h4{font-size:13px;font-weight:500;color:#5c4f45;margin-bottom:10px;}
+.pref-row{display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:0.5px solid #f0ece6;}
+.pref-row:last-child{border-bottom:none;}
+.pref-row span{font-size:12px;color:#7a6e64;}
+.toggle{width:36px;height:20px;border-radius:10px;border:none;cursor:pointer;position:relative;transition:background 0.2s;flex-shrink:0;}
+.toggle.on{background:#8cae95;}
+.toggle.off{background:#ddd8d0;}
+.toggle::after{content:'';position:absolute;width:14px;height:14px;border-radius:50%;background:#fff;top:3px;transition:left 0.2s;}
+.toggle.on::after{left:19px;}
+.toggle.off::after{left:3px;}
+.quotes-row{display:flex;gap:10px;padding:1rem 1.5rem;overflow-x:auto;}
+.quote-card{background:#fff;border-radius:12px;border:0.5px solid #ddd8d0;padding:1rem;min-width:200px;flex-shrink:0;}
+.quote-card blockquote{font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:#7a6e64;line-height:1.6;margin-bottom:6px;}
+.quote-card cite{font-size:10px;color:#b0a899;font-style:normal;}
+</style>
+
+<h2 class="sr-only">HerPath — a multilingual support platform for women rebuilding their lives after incarceration</h2>
+
+<div class="hp" id="hp">
+
+<nav class="hp-nav">
+  <div class="hp-logo" onclick="showPage('home')">Her<span>Path</span></div>
+  <ul class="hp-nav-links">
+    <li><a onclick="showPage('home')" id="nav-home" class="active" data-i18n="nav_home">Home</a></li>
+    <li><a onclick="showPage('learn')" id="nav-learn" data-i18n="nav_learn">Learn</a></li>
+    <li><a onclick="showPage('resources')" id="nav-resources" data-i18n="nav_resources">Resources</a></li>
+    <li><a onclick="showPage('support')" id="nav-support" data-i18n="nav_support">Support</a></li>
+    <li><a onclick="showPage('community')" id="nav-community" data-i18n="nav_community">Community</a></li>
+  </ul>
+  <div class="hp-nav-right">
+    <select class="lang-select" onchange="setLang(this.value)" id="langSel">
+      <option value="en">🌐 English</option>
+      <option value="zh">中文</option>
+      <option value="ar">العربية</option>
+      <option value="vi">Tiếng Việt</option>
+      <option value="es">Español</option>
+    </select>
+    <button class="btn-nav outline" onclick="showPage('signin')" data-i18n="btn_signin">Sign in</button>
+    <button class="btn-nav" onclick="showPage('signup')" data-i18n="btn_join">Join free</button>
+  </div>
+</nav>
+
+<!-- HOME -->
+<div class="page active" id="page-home">
+  <div class="safe-banner">
+    <i class="ti ti-shield-check" aria-hidden="true"></i>
+    <span data-i18n="safe_banner">This is a safe, moderated space. All content is reviewed by our professional team. Your privacy is protected.</span>
+  </div>
+
+  <div class="hp-hero">
+    <h1 data-i18n="hero_title">Your path forward<br>starts <em>here</em></h1>
+    <p data-i18n="hero_sub">A safe, supportive space for women rebuilding their lives — offering digital skills, real-time support, and a community that truly understands your journey.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="showPage('signup')" data-i18n="btn_start">Get started — it's free</button>
+      <button class="btn-outline" onclick="showPage('community')" data-i18n="btn_community">Join community</button>
+    </div>
+  </div>
+
+  <div class="illustr-row">
+    <div class="illustr-card">
+      <svg class="illustr-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="40" cy="28" r="14" fill="#e4ede8"/>
+        <ellipse cx="40" cy="58" rx="20" ry="12" fill="#e4ede8"/>
+        <circle cx="40" cy="26" r="10" fill="#8cae95"/>
+        <ellipse cx="40" cy="56" rx="16" ry="9" fill="#b5957a" opacity="0.5"/>
+        <path d="M32 50 Q40 44 48 50" fill="#c8a888" stroke="none"/>
+        <circle cx="36" cy="25" r="1.5" fill="#fff"/>
+        <circle cx="44" cy="25" r="1.5" fill="#fff"/>
+        <path d="M36 30 Q40 33 44 30" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M24 68 Q32 60 40 64 Q48 60 56 68" fill="none" stroke="#8cae95" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <p data-i18n="illu_grow">Growing & learning</p>
+    </div>
+    <div class="illustr-card">
+      <svg class="illustr-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="28" cy="30" r="11" fill="#f0e4e4"/>
+        <circle cx="52" cy="30" r="11" fill="#e4ede8"/>
+        <circle cx="28" cy="28" r="8" fill="#d4a0a0"/>
+        <circle cx="52" cy="28" r="8" fill="#8cae95"/>
+        <path d="M20 55 Q28 48 36 52 Q40 50 44 52 Q52 48 60 55" fill="none" stroke="#b5957a" stroke-width="2" stroke-linecap="round"/>
+        <path d="M36 40 Q40 46 44 40" fill="none" stroke="#b5957a" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="25" cy="27" r="1.2" fill="#fff"/>
+        <circle cx="31" cy="27" r="1.2" fill="#fff"/>
+        <circle cx="49" cy="27" r="1.2" fill="#fff"/>
+        <circle cx="55" cy="27" r="1.2" fill="#fff"/>
+      </svg>
+      <p data-i18n="illu_connect">Connecting with others</p>
+    </div>
+    <div class="illustr-card">
+      <svg class="illustr-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="40" cy="22" r="12" fill="#e8e0f0"/>
+        <circle cx="40" cy="20" r="9" fill="#a080c0"/>
+        <ellipse cx="40" cy="48" rx="18" ry="10" fill="#e8e0f0"/>
+        <path d="M34 46 L40 36 L46 46" fill="#c0a0e0" stroke="none"/>
+        <circle cx="37" cy="20" r="1.2" fill="#fff"/>
+        <circle cx="43" cy="20" r="1.2" fill="#fff"/>
+        <path d="M37 25 Q40 27 43 25" fill="none" stroke="#fff" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M28 62 L52 62" stroke="#a080c0" stroke-width="2" stroke-linecap="round"/>
+        <path d="M32 66 L48 66" stroke="#c0a0e0" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <p data-i18n="illu_rebuild">Rebuilding confidence</p>
+    </div>
+    <div class="illustr-card">
+      <svg class="illustr-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="40" cy="26" r="13" fill="#fde8d8"/>
+        <circle cx="40" cy="24" r="9" fill="#d4956a"/>
+        <ellipse cx="40" cy="52" rx="16" ry="9" fill="#fde8d8"/>
+        <circle cx="40" cy="44" r="5" fill="#f0c090"/>
+        <circle cx="37" cy="23" r="1.2" fill="#fff"/>
+        <circle cx="43" cy="23" r="1.2" fill="#fff"/>
+        <path d="M37 28 Q40 30 43 28" fill="none" stroke="#fff" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M32 62 Q36 56 40 60 Q44 56 48 62" fill="none" stroke="#d4956a" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M36 68 L44 68" stroke="#f0c090" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <p data-i18n="illu_family">Reconnecting with family</p>
+    </div>
+  </div>
+
+  <div class="quote-strip">
+    <blockquote id="heroQuote">"You are not your past. You are the strength it took to survive it."</blockquote>
+    <cite id="heroQuoteSrc">— Sharon E. Rainey</cite>
+  </div>
+
+  <div class="features-row">
+    <div class="feat-card" onclick="showPage('learn')">
+      <div class="feat-icon fi-sage"><i class="ti ti-book-open" aria-hidden="true"></i></div>
+      <h3 data-i18n="feat_learn">Free lessons & podcasts</h3>
+      <p data-i18n="feat_learn_d">Internet safety, digital skills, and the online economy — learn at your own pace. Download for free.</p>
+    </div>
+    <div class="feat-card" onclick="showPage('support')">
+      <div class="feat-icon fi-rose"><i class="ti ti-message-circle" aria-hidden="true"></i></div>
+      <h3 data-i18n="feat_support">Real-time support</h3>
+      <p data-i18n="feat_support_d">Ask anything, anytime. Trained peer advocates and social workers respond quickly.</p>
+    </div>
+    <div class="feat-card" onclick="showPage('community')">
+      <div class="feat-icon fi-sand"><i class="ti ti-users" aria-hidden="true"></i></div>
+      <h3 data-i18n="feat_comm">Community & events</h3>
+      <p data-i18n="feat_comm_d">Connect with women who understand. Share, support, and attend events together.</p>
+    </div>
+    <div class="feat-card" onclick="showPage('resources')">
+      <div class="feat-icon fi-lav"><i class="ti ti-heart-handshake" aria-hidden="true"></i></div>
+      <h3 data-i18n="feat_res">NSW support links</h3>
+      <p data-i18n="feat_res_d">Curated links to Australian organisations for housing, family, safety, and more.</p>
+    </div>
+  </div>
+
+  <div class="hotline-section">
+    <div class="hotline-title"><i class="ti ti-phone-call" aria-hidden="true"></i><span data-i18n="hl_title">Crisis & support hotlines — available 24/7</span></div>
+    <div class="hotline-grid">
+      <div class="hotline-item"><span class="hl-name">Lifeline</span><span class="hl-num">13 11 14</span><span class="hl-desc" data-i18n="hl_life">Crisis support & suicide prevention</span></div>
+      <div class="hotline-item"><span class="hl-name">1800RESPECT</span><span class="hl-num">1800 737 732</span><span class="hl-desc" data-i18n="hl_resp">Domestic, family & sexual violence</span></div>
+      <div class="hotline-item"><span class="hl-name">Beyond Blue</span><span class="hl-num">1300 22 4636</span><span class="hl-desc" data-i18n="hl_bb">Mental health & anxiety support</span></div>
+      <div class="hotline-item"><span class="hl-name">Kids Helpline</span><span class="hl-num">1800 55 1800</span><span class="hl-desc" data-i18n="hl_kids">Support for children & young people</span></div>
+    </div>
+  </div>
+
+  <div class="quotes-row">
+    <div class="quote-card"><blockquote>"The most courageous act is still to think for yourself. Aloud."</blockquote><cite>— Coco Chanel</cite></div>
+    <div class="quote-card"><blockquote>"She overcame everything that was meant to destroy her."</blockquote><cite>— R.H. Sin</cite></div>
+    <div class="quote-card"><blockquote>"Rock bottom became the solid foundation on which I rebuilt my life."</blockquote><cite>— J.K. Rowling</cite></div>
+    <div class="quote-card"><blockquote>"I am not afraid of storms, for I am learning how to sail my ship."</blockquote><cite>— Louisa May Alcott</cite></div>
+  </div>
+</div>
+
+<!-- LEARN -->
+<div class="page" id="page-learn">
+  <div class="pg-header">
+    <h2 data-i18n="nav_learn">Learn & grow</h2>
+    <p data-i18n="learn_sub">Free lessons, podcasts & guides — all downloadable</p>
+  </div>
+  <div id="lessonList">
+    <div class="lesson-grid">
+      <div class="les-card" onclick="openLesson('safety')">
+        <div class="les-thumb" style="background:#e4ede8;">🛡️</div>
+        <div class="les-body">
+          <span class="les-tag tag-lesson">Lesson</span>
+          <h4 data-i18n="les1_title">Staying safe online</h4>
+          <p data-i18n="les1_desc">Recognise scams, protect your accounts, and browse with confidence.</p>
+        </div>
+        <div class="les-footer">
+          <div class="prog-bar"><div class="prog-fill" style="width:60%"></div></div>
+          <span>60%</span>
+          <button class="dl-btn" onclick="event.stopPropagation()" title="Download"><i class="ti ti-download" aria-hidden="true"></i></button>
+        </div>
+      </div>
+      <div class="les-card" onclick="openLesson('disinfo')">
+        <div class="les-thumb" style="background:#f0e8e4;">🔍</div>
+        <div class="les-body">
+          <span class="les-tag tag-podcast">Podcast</span>
+          <h4 data-i18n="les2_title">Spotting disinformation</h4>
+          <p data-i18n="les2_desc">How to identify fake news, manipulated media, and online scams.</p>
+        </div>
+        <div class="les-footer">
+          <div class="prog-bar"><div class="prog-fill" style="width:0%"></div></div>
+          <span>New</span>
+          <button class="dl-btn" onclick="event.stopPropagation()"><i class="ti ti-download" aria-hidden="true"></i></button>
+        </div>
+      </div>
+      <div class="les-card" onclick="openLesson('tgv')">
+        <div class="les-thumb" style="background:#fde8d8;">💜</div>
+        <div class="les-body">
+          <span class="les-tag tag-guide">Guide</span>
+          <h4 data-i18n="les3_title">Tech-facilitated harm</h4>
+          <p data-i18n="les3_desc">Understanding and escaping technology-facilitated gendered violence.</p>
+        </div>
+        <div class="les-footer">
+          <div class="prog-bar"><div class="prog-fill" style="width:25%"></div></div>
+          <span>25%</span>
+          <button class="dl-btn" onclick="event.stopPropagation()"><i class="ti ti-download" aria-hidden="true"></i></button>
+        </div>
+      </div>
+      <div class="les-card" onclick="openLesson('economy')">
+        <div class="les-thumb" style="background:#ede8e0;">💰</div>
+        <div class="les-body">
+          <span class="les-tag tag-lesson">Lesson</span>
+          <h4 data-i18n="les4_title">The digital economy</h4>
+          <p data-i18n="les4_desc">Freelancing, online banking, and building income in the digital world.</p>
+        </div>
+        <div class="les-footer">
+          <div class="prog-bar"><div class="prog-fill" style="width:0%"></div></div>
+          <span>New</span>
+          <button class="dl-btn" onclick="event.stopPropagation()"><i class="ti ti-download" aria-hidden="true"></i></button>
+        </div>
+      </div>
+      <div class="les-card" onclick="openLesson('family')">
+        <div class="les-thumb" style="background:#e8f0e4;">👨‍👩‍👧</div>
+        <div class="les-body">
+          <span class="les-tag tag-guide">Guide</span>
+          <h4 data-i18n="les5_title">Reconnecting with family</h4>
+          <p data-i18n="les5_desc">Steps for rebuilding relationships with children and loved ones after release.</p>
+        </div>
+        <div class="les-footer">
+          <div class="prog-bar"><div class="prog-fill" style="width:0%"></div></div>
+          <span>New</span>
+          <button class="dl-btn" onclick="event.stopPropagation()"><i class="ti ti-download" aria-hidden="true"></i></button>
+        </div>
+      </div>
+      <div class="les-card" onclick="openLesson('dv')">
+        <div class="les-thumb" style="background:#f0e4ee;">🌸</div>
+        <div class="les-body">
+          <span class="les-tag tag-guide">Guide</span>
+          <h4 data-i18n="les6_title">Dealing with domestic abuse</h4>
+          <p data-i18n="les6_desc">Recognising abuse, safety planning, and finding shelter in NSW.</p>
+        </div>
+        <div class="les-footer">
+          <div class="prog-bar"><div class="prog-fill" style="width:0%"></div></div>
+          <span>New</span>
+          <button class="dl-btn" onclick="event.stopPropagation()"><i class="ti ti-download" aria-hidden="true"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="lessonDetail" style="display:none;"></div>
+</div>
+
+<!-- RESOURCES -->
+<div class="page" id="page-resources">
+  <div class="pg-header">
+    <h2 data-i18n="nav_resources">NSW support directory</h2>
+    <p data-i18n="res_sub">Trusted Australian organisations — all free to contact</p>
+  </div>
+  <div class="resource-section">
+    <div class="res-category">
+      <div class="res-cat-title"><i class="ti ti-heart-handshake" style="color:#a06060;font-size:16px;" aria-hidden="true"></i><span>Domestic violence & safety</span></div>
+      <div class="res-card"><div class="res-icon" style="background:#f0e4e4;"><i class="ti ti-shield" style="color:#a06060;font-size:14px;" aria-hidden="true"></i></div><div class="res-info"><h6>1800RESPECT</h6><p>National sexual assault, domestic and family violence counselling service. Free, confidential, 24/7.</p><a href="https://www.1800respect.org.au" target="_blank">1800respect.org.au &rarr;</a></div></div>
+      <div class="res-card"><div class="res-icon" style="background:#f0e4e4;"><i class="ti ti-home-heart" style="color:#a06060;font-size:14px;" aria-hidden="true"></i></div><div class="res-info"><h6>Women's Community Shelters NSW</h6><p>Emergency and transitional housing for women escaping domestic violence across NSW.</p><a href="https://www.wcs.org.au" target="_blank">wcs.org.au &rarr;</a></div></div>
+      <div class="res-card"><div class="res-icon" style="background:#f0e4e4;"><i class="ti ti-building" style="color:#a06060;font-size:14px;" aria-hidden="true"></i></div><div class="res-info"><h6>NSW Domestic Violence Line</h6><p>Free referral service for women and children experiencing domestic violence. Call 1800 656 463.</p><a href="https://www.facs.nsw.gov.au" target="_blank">facs.nsw.gov.au &rarr;</a></div></div>
+    </div>
+    <div class="res-category">
+      <div class="res-cat-title"><i class="ti ti-users" style="color:#5a8c6e;font-size:16px;" aria-hidden="true"></i><span>Family reconnection & children</span></div>
+      <div class="res-card"><div class="res-icon" style="background:#e4ede8;"><i class="ti ti-friends" style="color:#4a7a5e;font-size:14px;" aria-hidden="true"></i></div><div class="res-info"><h6>Shine for Kids</h6><p>Supporting children with parents in the criminal justice system — family visit programs, camps, counselling.</p><a href="https://www.shineforkids.org.au" target="_blank">shineforkids.org.au &rarr;</a></div></div>
+      <div class="res-card"><div class="res-icon" style="background:#e4ede8;"><i class="ti ti-baby-carriage" style="color:#4a7a5e;font-size:14px;" aria-hidden="true"></i></div><div class="res-info"><h6>Relationships Australia NSW</h6><p>Family counselling, parenting support, and mediation services to help rebuild family bonds.</p><a href="https://www.relationshipsnsw.org.au" target="_blank">relationshipsnsw.org.au &rarr;</a></div></div>
+      <div class="res-card"><div class="res-icon" style="background:#e4ede8;"><i class="ti ti-git-merge" style="color:#4a7a5e;font-size:14px;" aria-hidden="true"></i></div><div class="res-info"><h6>Wirringa Baiya Aboriginal Women's Legal Centre</h6><p>Legal support for Aboriginal and Torres Strait Islander women, including family law and custody matters.</p><a href="https://www.wirringabaiya.org.au" target="_blank">wirringabaiya.org.au &rarr;</a></div></div>
+    </div>
+    <div class="res-category">
+      <div class="res-cat-title"><i class="ti ti-building-community" style="color:#7a5a9a;font-size:16px;" aria-hidden="true"></i><span>Reintegration & housing (NSW)</span></div>
+      <div class="res-card"><div class="res-icon" style="background:#ede4f0;"><i class="ti ti-home" style="color:#7a5a9a;font-size:14px;" aria-hidden="true"></i></div><div class="res-info"><h6>NUAA – NSW Users and AIDS Association</h6><p>Post-release support for women including housing, health, and legal referrals in NSW.</p><a href="https://www.nuaa.org.au" target="_blank">nuaa.org.au &rarr;</a></div></div>
+      <div class="res-card"><div class="res-icon" style="background:#ede4f0;"><i class="ti ti-scale" style="color:#7a5a9a;font-size:14px;" aria-hidden="true"></i></div><div class="res-info"><h6>Women's Legal Service NSW</h6><p>Free legal advice for women on family law, domestic violence, housing, and employment.</p><a href="https://www.wlsnsw.org.au" target="_blank">wlsnsw.org.au &rarr;</a></div></div>
+      <div class="res-card"><div class="res-icon" style="background:#ede4f0;"><i class="ti ti-rosette" style="color:#7a5a9a;font-size:14px;" aria-hidden="true"></i></div><div class="res-info"><h6>Momentum Women</h6><p>Mentoring and reintegration programs specifically for women leaving prison in NSW.</p><a href="https://www.momentumwomen.com.au" target="_blank">momentumwomen.com.au &rarr;</a></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SUPPORT -->
+<div class="page" id="page-support">
+  <div class="pg-header">
+    <h2 data-i18n="nav_support">Get support</h2>
+    <p data-i18n="support_sub">Real-time help from peer advocates & social workers — no question too small</p>
+  </div>
+  <div class="safe-banner" style="margin:1rem 1.2rem 0;border-radius:10px;border:0.5px solid #c8ddd0;">
+    <i class="ti ti-lock" aria-hidden="true"></i>
+    <span data-i18n="chat_safe">Everything you share here is confidential. This space is monitored only to ensure your safety.</span>
+  </div>
+  <div class="chat-wrap">
+    <div class="chat-hd">
+      <div class="chat-av">🌿</div>
+      <div class="chat-hd-info">
+        <h4>HerPath Support</h4>
+        <p><span class="chat-dot"></span>Online now</p>
+      </div>
+    </div>
+    <div class="chat-msgs" id="chatMsgs">
+      <div class="msg msg-s">Hi, welcome to HerPath. I'm here to help — whether you have questions about digital safety, need help finding services, or just want someone to listen. You're not alone. 💚<div class="msg-t">Today, 10:02 am</div></div>
+      <div class="msg msg-u">Hi, I'm not sure how to set up a safe email address. Can you help?<div class="msg-t">Today, 10:04 am</div></div>
+      <div class="msg msg-s">Of course! I'd recommend ProtonMail — it's free, private, and encrypted. Would you like me to walk you through it step by step?<div class="msg-t">Today, 10:04 am</div></div>
+    </div>
+    <div class="chat-in">
+      <input class="chat-input" id="chatIn" type="text" placeholder="Type your message..." onkeydown="if(event.key==='Enter')sendChat()"/>
+      <button class="chat-send" onclick="sendChat()"><i class="ti ti-send" aria-hidden="true"></i></button>
+    </div>
+  </div>
+</div>
+
+<!-- COMMUNITY -->
+<div class="page" id="page-community">
+  <div class="pg-header">
+    <h2 data-i18n="nav_community">Community</h2>
+    <p data-i18n="comm_sub">A safe, moderated space — all posts reviewed by our professional team</p>
+  </div>
+  <div class="safe-banner" style="margin:0 1.2rem;border-radius:10px;border:0.5px solid #c8ddd0;margin-top:0.8rem;">
+    <i class="ti ti-shield-check" aria-hidden="true"></i>
+    <span data-i18n="comm_mod">All community posts and events are moderated by our trained professional team before being published.</span>
+  </div>
+  <div class="comm-tabs">
+    <button class="ctab active" onclick="switchTab('forum')">Forum</button>
+    <button class="ctab" onclick="switchTab('events')">Events</button>
+  </div>
+  <div class="comm-body">
+    <div class="tab-pn active" id="tab-forum">
+      <div class="post">
+        <div class="post-hd"><div class="pav av-teal">S</div><div class="pm"><h5>Sunflower</h5><span>2 hours ago</span></div><span class="anon-b">Anonymous name</span></div>
+        <p>It's been 3 weeks since I got out and the digital literacy lessons here have genuinely helped. Anyone else feel like technology moved really fast while we were inside?</p>
+        <div class="post-ft"><button class="pa"><i class="ti ti-heart" aria-hidden="true"></i> 14</button><button class="pa"><i class="ti ti-message" aria-hidden="true"></i> Reply</button></div>
+      </div>
+      <div class="post">
+        <div class="post-hd"><div class="pav av-lav">R</div><div class="pm"><h5>River</h5><span>Yesterday</span></div><span class="anon-b">Anonymous name</span></div>
+        <p>For anyone looking for work — the digital economy lesson helped me set up a proper email and LinkedIn profile. My case worker said it made a big difference.</p>
+        <div class="post-ft"><button class="pa"><i class="ti ti-heart" aria-hidden="true"></i> 22</button><button class="pa"><i class="ti ti-message" aria-hidden="true"></i> Reply</button></div>
+      </div>
+      <div class="post">
+        <div class="post-hd"><div class="pav av-rose">M</div><div class="pm"><h5>Meadow</h5><span>2 days ago</span></div><span class="anon-b">Anonymous name</span></div>
+        <p>Coming to the community BBQ last weekend was the best decision since getting out. It felt so normal. Thank you to everyone who organised it.</p>
+        <div class="post-ft"><button class="pa"><i class="ti ti-heart" aria-hidden="true"></i> 38</button><button class="pa"><i class="ti ti-message" aria-hidden="true"></i> Reply</button></div>
+      </div>
+    </div>
+    <div class="tab-pn" id="tab-events">
+      <div style="background:#e8f2ec;border-radius:10px;padding:8px 12px;margin-bottom:10px;font-size:11px;color:#4a7a5e;display:flex;align-items:center;gap:6px;">
+        <i class="ti ti-shield-check" aria-hidden="true"></i>
+        All events are planned and facilitated by our professional team. Your safety is our priority.
+      </div>
+      <div class="events-g">
+        <div class="ev-card"><div class="ev-date"><div class="day">24</div><div class="mon">May</div></div><div class="ev-info"><h4>Community BBQ — Parramatta Park</h4><p>An informal afternoon to connect and share a meal together.</p><div class="ev-tags"><span class="ev-tag off">Offline</span><span class="ev-tag">Free</span><span class="ev-tag">Social</span></div><div class="mod-note"><i class="ti ti-check" aria-hidden="true"></i>Facilitated by HerPath team</div></div></div>
+        <div class="ev-card"><div class="ev-date"><div class="day">29</div><div class="mon">May</div></div><div class="ev-info"><h4>Online safety workshop</h4><p>Hands-on session: passwords, privacy settings, safe messaging.</p><div class="ev-tags"><span class="ev-tag">Online</span><span class="ev-tag">Free</span></div><div class="mod-note"><i class="ti ti-check" aria-hidden="true"></i>Facilitated by HerPath team</div></div></div>
+        <div class="ev-card"><div class="ev-date"><div class="day">7</div><div class="mon">Jun</div></div><div class="ev-info"><h4>Community garden morning</h4><p>Volunteer together, give back, and build something beautiful.</p><div class="ev-tags"><span class="ev-tag off">Offline</span><span class="ev-tag">Volunteer</span></div><div class="mod-note"><i class="ti ti-check" aria-hidden="true"></i>Facilitated by HerPath team</div></div></div>
+        <div class="ev-card"><div class="ev-date"><div class="day">14</div><div class="mon">Jun</div></div><div class="ev-info"><h4>Peer support circle</h4><p>Facilitated sharing session with trained peer advocates.</p><div class="ev-tags"><span class="ev-tag">Online</span><span class="ev-tag">Support</span></div><div class="mod-note"><i class="ti ti-check" aria-hidden="true"></i>Facilitated by HerPath team</div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SIGN IN -->
+<div class="page" id="page-signin">
+  <div class="safe-banner"><i class="ti ti-lock" aria-hidden="true"></i><span>Your data is private and secure. We never share your information.</span></div>
+  <div class="sign-wrap">
+    <div class="sign-box">
+      <h3 data-i18n="signin_title">Welcome back</h3>
+      <p data-i18n="signin_sub">Sign in to continue your journey</p>
+      <div class="form-group"><label>Email address</label><input type="email" placeholder="your@email.com"/></div>
+      <div class="form-group"><label>Password</label><input type="password" placeholder="••••••••"/></div>
+      <button class="sign-submit" onclick="showPage('profile')">Sign in</button>
+      <div class="sign-switch">Don't have an account? <a onclick="showPage('signup')">Join free</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- SIGN UP -->
+<div class="page" id="page-signup">
+  <div class="safe-banner"><i class="ti ti-lock" aria-hidden="true"></i><span>This is a safe and private space. Your information is never shared without your consent.</span></div>
+  <div class="sign-wrap">
+    <div class="sign-box">
+      <h3 data-i18n="signup_title">Create your account</h3>
+      <p data-i18n="signup_sub">Join HerPath — free, private, and safe</p>
+      <div class="form-group"><label>Your first name</label><input type="text" placeholder="First name"/></div>
+      <div class="form-group"><label>Email address</label><input type="email" placeholder="your@email.com"/></div>
+      <div class="form-group"><label>Create a password</label><input type="password" placeholder="At least 8 characters"/></div>
+      <div class="form-group"><label>Preferred language</label>
+        <select class="lang-select" style="width:100%;padding:9px 12px;border-radius:10px;font-size:12px;">
+          <option>English</option><option>中文 (Chinese)</option><option>العربية (Arabic)</option><option>Tiếng Việt (Vietnamese)</option><option>Español (Spanish)</option>
+        </select>
+      </div>
+      <div class="check-row"><input type="checkbox" checked/><span>Send me monthly course suggestions tailored to my progress</span></div>
+      <div class="check-row"><input type="checkbox" checked/><span>Notify me about upcoming events and community gatherings in my area</span></div>
+      <div class="check-row"><input type="checkbox"/><span>I'd like to use an anonymous community name (recommended for privacy)</span></div>
+      <div class="check-row"><input type="checkbox" checked/><span>I agree to the community guidelines — a safe, respectful space for all women</span></div>
+      <button class="sign-submit" onclick="showPage('profile')">Create my account</button>
+      <div class="sign-switch">Already have an account? <a onclick="showPage('signin')">Sign in</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- PROFILE -->
+<div class="page" id="page-profile">
+  <div class="pg-header"><h2>My profile</h2><p>Your personal space on HerPath</p></div>
+  <div class="profile-wrap">
+    <div class="prof-header">
+      <div class="prof-av">S</div>
+      <div class="prof-info">
+        <h3>Sarah</h3>
+        <p>sarah@email.com</p>
+        <span class="prof-badge">Member since May 2026</span>
+      </div>
+    </div>
+    <div class="prof-grid">
+      <div class="prof-stat"><div class="ps-num">3</div><div class="ps-label">Lessons in progress</div></div>
+      <div class="prof-stat"><div class="ps-num">2</div><div class="ps-label">Events attended</div></div>
+      <div class="prof-stat"><div class="ps-num">5</div><div class="ps-label">Community replies</div></div>
+      <div class="prof-stat"><div class="ps-num">4</div><div class="ps-label">Resources saved</div></div>
+    </div>
+    <div class="prof-prefs">
+      <h4>My preferences</h4>
+      <div class="pref-row"><span>Monthly course suggestions</span><button class="toggle on" onclick="togglePref(this)"></button></div>
+      <div class="pref-row"><span>Event notifications</span><button class="toggle on" onclick="togglePref(this)"></button></div>
+      <div class="pref-row"><span>Anonymous community name</span><button class="toggle on" onclick="togglePref(this)"></button></div>
+      <div class="pref-row"><span>Email newsletter</span><button class="toggle off" onclick="togglePref(this)"></button></div>
+      <div class="pref-row"><span>Preferred language</span>
+        <select class="lang-select" onchange="setLang(this.value)">
+          <option value="en">English</option><option value="zh">中文</option><option value="ar">العربية</option><option value="vi">Tiếng Việt</option><option value="es">Español</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<script>
+const i18n={
+  en:{nav_home:"Home",nav_learn:"Learn",nav_resources:"Resources",nav_support:"Support",nav_community:"Community",btn_signin:"Sign in",btn_join:"Join free",safe_banner:"This is a safe, moderated space. All content is reviewed by our professional team. Your privacy is protected.",hero_title_h:"Your path forward starts <em>here</em>",hero_sub:"A safe, supportive space for women rebuilding their lives — offering digital skills, real-time support, and a community that truly understands your journey.",btn_start:"Get started — it's free",btn_community:"Join community",illu_grow:"Growing & learning",illu_connect:"Connecting with others",illu_rebuild:"Rebuilding confidence",illu_family:"Reconnecting with family",feat_learn:"Free lessons & podcasts",feat_learn_d:"Internet safety, digital skills, and the online economy — learn at your own pace. Download for free.",feat_support:"Real-time support",feat_support_d:"Ask anything, anytime. Trained peer advocates and social workers respond quickly.",feat_comm:"Community & events",feat_comm_d:"Connect with women who understand. Share, support, and attend events together.",feat_res:"NSW support links",feat_res_d:"Curated links to Australian organisations for housing, family, safety, and more.",hl_title:"Crisis & support hotlines — available 24/7",hl_life:"Crisis support & suicide prevention",hl_resp:"Domestic, family & sexual violence",hl_bb:"Mental health & anxiety support",hl_kids:"Support for children & young people",learn_sub:"Free lessons, podcasts & guides — all downloadable",les1_title:"Staying safe online",les1_desc:"Recognise scams, protect your accounts, and browse with confidence.",les2_title:"Spotting disinformation",les2_desc:"How to identify fake news, manipulated media, and online scams.",les3_title:"Tech-facilitated harm",les3_desc:"Understanding and escaping technology-facilitated gendered violence.",les4_title:"The digital economy",les4_desc:"Freelancing, online banking, and building income in the digital world.",les5_title:"Reconnecting with family",les5_desc:"Steps for rebuilding relationships with children and loved ones after release.",les6_title:"Dealing with domestic abuse",les6_desc:"Recognising abuse, safety planning, and finding shelter in NSW.",res_sub:"Trusted Australian organisations — all free to contact",support_sub:"Real-time help from peer advocates & social workers — no question too small",chat_safe:"Everything you share here is confidential. This space is monitored only to ensure your safety.",comm_sub:"A safe, moderated space — all posts reviewed by our professional team",comm_mod:"All community posts and events are moderated by our trained professional team before being published.",signin_title:"Welcome back",signin_sub:"Sign in to continue your journey",signup_title:"Create your account",signup_sub:"Join HerPath — free, private, and safe"},
+  zh:{nav_home:"主页",nav_learn:"学习",nav_resources:"资源",nav_support:"支持",nav_community:"社区",btn_signin:"登录",btn_join:"免费注册",safe_banner:"这是一个安全、受监管的空间。所有内容均由我们的专业团队审核。您的隐私受到保护。",hero_sub:"一个安全、支持性的空间，帮助女性重建生活——提供数字技能、实时支持和真正理解您旅程的社区。",btn_start:"立即开始——免费",btn_community:"加入社区",illu_grow:"成长与学习",illu_connect:"与他人连接",illu_rebuild:"重建自信",illu_family:"与家人重新联系",feat_learn:"免费课程和播客",feat_learn_d:"互联网安全、数字技能和数字经济——按自己的节奏学习，免费下载。",feat_support:"实时支持",feat_support_d:"随时提问。训练有素的同伴倡导者和社会工作者快速回应。",feat_comm:"社区和活动",feat_comm_d:"与理解您的女性建立联系，一起分享、支持和参加活动。",feat_res:"NSW支持链接",feat_res_d:"澳大利亚住房、家庭、安全等组织精选链接。",hl_title:"危机和支持热线——24/7全天候",hl_life:"危机支持和预防自杀",hl_resp:"家庭、家庭和性暴力",hl_bb:"心理健康和焦虑支持",hl_kids:"儿童和青少年支持",learn_sub:"免费课程、播客和指南——均可下载",les1_title:"网络安全",les2_title:"识别虚假信息",les3_title:"技术性别暴力",les4_title:"数字经济",les5_title:"与家人重新联系",les6_title:"应对家庭暴力",res_sub:"受信任的澳大利亚组织——均可免费联系",support_sub:"来自同伴倡导者和社会工作者的实时帮助",chat_safe:"您在这里分享的一切都是保密的。",comm_sub:"安全、受监管的空间——所有帖子均由我们的专业团队审核",comm_mod:"所有社区帖子和活动在发布前均由我们训练有素的专业团队审核。",signin_title:"欢迎回来",signin_sub:"登录继续您的旅程",signup_title:"创建账户",signup_sub:"加入HerPath——免费、私密、安全"},
+  ar:{nav_home:"الرئيسية",nav_learn:"تعلم",nav_resources:"موارد",nav_support:"الدعم",nav_community:"المجتمع",btn_signin:"تسجيل الدخول",btn_join:"انضم مجاناً",safe_banner:"هذا مكان آمن وخاضع للإشراف. يتم مراجعة جميع المحتويات من قبل فريقنا المتخصص. خصوصيتك محمية.",hero_sub:"مساحة آمنة وداعمة للنساء اللواتي يعدن بناء حياتهن.",btn_start:"ابدأ الآن - مجاناً",btn_community:"انضم للمجتمع",feat_learn:"دروس ومدونات صوتية مجانية",feat_support:"دعم فوري",feat_comm:"المجتمع والفعاليات",feat_res:"روابط دعم NSW",hl_title:"خطوط الأزمات والدعم - متاحة 24/7",learn_sub:"دروس ومدونات وأدلة مجانية قابلة للتنزيل",signin_title:"مرحباً بعودتك",signup_title:"إنشاء حساب"},
+  vi:{nav_home:"Trang chủ",nav_learn:"Học tập",nav_resources:"Tài nguyên",nav_support:"Hỗ trợ",nav_community:"Cộng đồng",btn_signin:"Đăng nhập",btn_join:"Tham gia miễn phí",safe_banner:"Đây là không gian an toàn, được kiểm duyệt. Tất cả nội dung được xem xét bởi đội ngũ chuyên nghiệp của chúng tôi.",hero_sub:"Không gian an toàn và hỗ trợ cho phụ nữ đang xây dựng lại cuộc sống.",btn_start:"Bắt đầu — miễn phí",btn_community:"Tham gia cộng đồng",feat_learn:"Bài học & podcast miễn phí",feat_support:"Hỗ trợ thời gian thực",feat_comm:"Cộng đồng & sự kiện",feat_res:"Liên kết hỗ trợ NSW",hl_title:"Đường dây hỗ trợ khủng hoảng - 24/7",learn_sub:"Bài học, podcast & hướng dẫn miễn phí — tải xuống được",signin_title:"Chào mừng trở lại",signup_title:"Tạo tài khoản"},
+  es:{nav_home:"Inicio",nav_learn:"Aprender",nav_resources:"Recursos",nav_support:"Apoyo",nav_community:"Comunidad",btn_signin:"Iniciar sesión",btn_join:"Únete gratis",safe_banner:"Este es un espacio seguro y moderado. Todo el contenido es revisado por nuestro equipo profesional.",hero_sub:"Un espacio seguro y de apoyo para mujeres que reconstruyen sus vidas.",btn_start:"Comenzar — es gratis",btn_community:"Unirse a la comunidad",feat_learn:"Lecciones y podcasts gratis",feat_support:"Apoyo en tiempo real",feat_comm:"Comunidad y eventos",feat_res:"Enlaces de apoyo en NSW",hl_title:"Líneas de crisis y apoyo — disponibles 24/7",learn_sub:"Lecciones, podcasts y guías gratuitas — descargables",signin_title:"Bienvenida de vuelta",signup_title:"Crear una cuenta"}
+};
+
+let lang='en';
+function setLang(l){
+  lang=l;
+  document.getElementById('langSel').value=l;
+  const t=i18n[l]||i18n.en;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k=el.getAttribute('data-i18n');
+    if(t[k])el.textContent=t[k];
+  });
+}
+
+const lessons={
+  safety:{title:"Staying safe online",color:"#e4ede8",emoji:"🛡️",intro:"The internet is an essential tool for modern life — but it can also expose you to scams, harassment, and privacy risks. This lesson will help you navigate online spaces with confidence and safety.",modules:[{title:"Understanding passwords & accounts",body:"Learn how to create strong passwords, use a password manager, and set up two-factor authentication to protect your accounts from being hacked."},{title:"Recognising online scams",body:"Scammers often target people who have recently been released. Learn the warning signs of phishing emails, fake job offers, romance scams, and how to verify information."},{title:"Privacy settings on social media",body:"Step-by-step guidance on locking down your Facebook, Instagram and other accounts so only trusted people can see your information."},{title:"Safe browsing & downloads",body:"How to identify secure websites, avoid malicious downloads, and use a VPN if you need extra privacy."}]},
+  disinfo:{title:"Spotting disinformation",color:"#f0e8e4",emoji:"🔍",intro:"Not everything you read online is true. Disinformation — false or misleading information spread online — can affect your decisions, relationships, and wellbeing. This podcast series helps you become a critical thinker.",modules:[{title:"What is disinformation?",body:"The difference between misinformation (honest mistakes) and disinformation (deliberate deception). How it spreads through social media and messaging apps."},{title:"Fact-checking tools",body:"Free tools like Snopes, AAP FactCheck (Australia), and Google Reverse Image Search that help you verify claims before sharing them."},{title:"Deepfakes and manipulated media",body:"How to spot edited videos, AI-generated images, and audio manipulation — increasingly used for scams and harassment."},{title:"Protecting yourself from manipulation",body:"Critical thinking strategies to question sources, check dates, look for multiple perspectives, and resist emotional manipulation."}]},
+  tgv:{title:"Technology-facilitated gendered violence",color:"#fde8d8",emoji:"💜",intro:"Technology-facilitated gendered violence (TFGV) is the use of digital technology to harass, stalk, control, or abuse someone — often targeting women. You deserve to feel safe online and offline.",modules:[{title:"What is TFGV?",body:"Forms include cyberstalking, image-based abuse (non-consensual sharing of intimate images), online harassment, monitoring through shared accounts, and coercive control via technology."},{title:"Recognising controlling behaviour",body:"Controlling technology can include a partner demanding access to your phone or accounts, tracking your location without consent, or flooding you with messages to control your movements."},{title:"What to do if it's happening to you",body:"How to document evidence safely, report to eSafety Commissioner Australia (esafety.gov.au), seek legal advice, and create a safety plan."},{title:"Removing your images online",body:"Australia has laws against non-consensual sharing of intimate images. The eSafety Commissioner can help you get images removed quickly and for free."}]},
+  economy:{title:"The digital economy",color:"#ede8e0",emoji:"💰",intro:"The modern economy increasingly runs online. Whether you're looking for employment, managing money, or starting something of your own, digital skills open doors to financial independence.",modules:[{title:"Setting up a professional online presence",body:"Create a free email address (ProtonMail or Gmail), set up a LinkedIn profile, and learn how employers search for candidates online."},{title:"Online banking & financial safety",body:"How to set up a bank account, use internet banking safely, spot financial scams, and manage budgeting apps like Pocketbook or MoneyBrilliant."},{title:"Finding work online",body:"Job sites like Seek.com.au, Indeed, and LinkedIn. How to write a strong profile, apply for jobs online, and prepare for video interviews."},{title:"Freelancing & digital income",body:"Platforms like Airtasker and Fiverr allow you to offer services — cleaning, data entry, social media management — and get paid through your phone."}]},
+  family:{title:"Reconnecting with family",color:"#e8f0e4",emoji:"👨‍👩‍👧",intro:"Rebuilding relationships with your children and family is one of the most meaningful — and sometimes most complex — parts of life after release. You don't have to do it alone.",modules:[{title:"Understanding your feelings (and theirs)",body:"It is completely normal to feel guilt, anxiety, or fear about reconnecting. Children and other family members may feel confused too. A family counsellor can help create a safe space for everyone."},{title:"Communicating with your children",body:"Age-appropriate ways to talk to children about your absence. Focus on consistency, honesty appropriate to their age, and showing up reliably over time — not a single conversation."},{title:"Legal and custody considerations",body:"If there are Family Court orders in place, you'll need legal advice before contact. Women's Legal Service NSW (wlsnsw.org.au) offers free advice. Relationships Australia can assist with mediation."},{title:"Useful organisations in NSW",body:"Shine for Kids supports children with incarcerated parents and can facilitate family contact. Relationships Australia NSW offers family counselling and parenting programs specifically designed for families navigating reintegration."}]},
+  dv:{title:"Dealing with domestic abuse",color:"#f0e4ee",emoji:"🌸",intro:"If you are experiencing or have experienced domestic abuse, please know: it is not your fault. You deserve safety. This guide offers information on recognising abuse, creating a safety plan, and finding support in NSW.",modules:[{title:"Recognising domestic abuse",body:"Abuse is not only physical. It includes emotional abuse (humiliation, threats), financial abuse (controlling money), digital abuse (monitoring your phone), and coercive control — which is now a crime in NSW."},{title:"Creating a safety plan",body:"A safety plan is a personal guide for keeping yourself safe. It includes: a safe place to go, an emergency bag with documents, trusted contacts, and a code word with a friend or neighbour."},{title:"Emergency and crisis support",body:"If you are in immediate danger, call 000. 1800RESPECT (1800 737 732) is a 24/7 confidential service. NSW Domestic Violence Line (1800 656 463) can arrange emergency accommodation."},{title:"Finding shelter in NSW",body:"Women's Community Shelters NSW (wcs.org.au) operates refuges across the state. YWCA NSW, Domestic Violence NSW, and Mission Australia also provide emergency and transitional housing for women and their children."}]}
+};
+
+function openLesson(id){
+  const l=lessons[id];
+  const html=`<div class="lesson-detail"><button class="back-btn" onclick="closeLesson()"><i class="ti ti-arrow-left" aria-hidden="true"></i> Back to lessons</button><div class="ld-hero"><div style="font-size:32px;margin-bottom:8px;">${l.emoji}</div><h3>${l.title}</h3><p>${l.intro}</p><div class="ld-actions"><button class="btn-primary" style="font-size:12px;padding:7px 16px;">Start lesson</button><button class="btn-outline" style="font-size:12px;padding:7px 16px;"><i class="ti ti-download" aria-hidden="true" style="margin-right:4px;"></i>Download PDF — free</button></div></div>${l.modules.map((m,i)=>`<div class="ld-module"><h5><span style="background:#f0ece6;color:#b5957a;width:20px;height:20px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;">${i+1}</span>${m.title}</h5><p>${m.body}</p></div>`).join('')}</div>`;
+  document.getElementById('lessonDetail').innerHTML=html;
+  document.getElementById('lessonList').style.display='none';
+  document.getElementById('lessonDetail').style.display='block';
+}
+function closeLesson(){
+  document.getElementById('lessonList').style.display='block';
+  document.getElementById('lessonDetail').style.display='none';
+}
+
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.hp-nav-links a').forEach(a=>a.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  const n=document.getElementById('nav-'+id);
+  if(n)n.classList.add('active');
+}
+
+function switchTab(id){
+  document.querySelectorAll('.tab-pn').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.ctab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function sendChat(){
+  const inp=document.getElementById('chatIn');
+  const val=inp.value.trim();
+  if(!val)return;
+  const msgs=document.getElementById('chatMsgs');
+  const u=document.createElement('div');
+  u.className='msg msg-u';
+  u.innerHTML=val+'<div class="msg-t">Just now</div>';
+  msgs.appendChild(u);
+  inp.value='';
+  msgs.scrollTop=msgs.scrollHeight;
+  setTimeout(()=>{
+    const s=document.createElement('div');
+    s.className='msg msg-s';
+    s.innerHTML="Thank you for reaching out. Our support team will respond shortly. Remember — you're not alone, and this is a safe space. 💚<div class='msg-t'>Just now</div>";
+    msgs.appendChild(s);
+    msgs.scrollTop=msgs.scrollHeight;
+  },900);
+}
+
+function togglePref(btn){
+  btn.classList.toggle('on');
+  btn.classList.toggle('off');
+}
+</script>
